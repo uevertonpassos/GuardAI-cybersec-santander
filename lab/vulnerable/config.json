@@ -1,0 +1,6 @@
+{
+  "lab_only": true,
+  "debug": true,
+  "bind": "0.0.0.0",
+  "tls": false
+}

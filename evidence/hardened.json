@@ -1,0 +1,13 @@
+{
+  "formato": "guardai-estatico-v1",
+  "revisao": null,
+  "arquivos_analisados": [
+    "lab/hardened/app.py",
+    "lab/hardened/config.json",
+    "lab/hardened/infra.json"
+  ],
+  "arquivos_excluidos": [],
+  "arquivos_sem_regra": [],
+  "achados": [],
+  "erros": []
+}

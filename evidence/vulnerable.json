@@ -1,0 +1,84 @@
+{
+  "formato": "guardai-estatico-v1",
+  "revisao": null,
+  "arquivos_analisados": [
+    "lab/vulnerable/app.py",
+    "lab/vulnerable/config.json",
+    "lab/vulnerable/infra.json"
+  ],
+  "arquivos_excluidos": [],
+  "arquivos_sem_regra": [],
+  "achados": [
+    {
+      "id": "SQL001",
+      "arquivo": "lab/vulnerable/app.py",
+      "localizacao": "linha 17",
+      "evidencia": "Construção dinâmica diretamente no argumento de execute; confirmar origem da entrada.",
+      "impacto": null,
+      "probabilidade": null,
+      "pontuacao": null,
+      "severidade": "não determinada",
+      "confianca": "média — padrão estático, sem análise de fluxo completa",
+      "cenario_de_risco": "Validar uso, exposição, dados e controles antes de classificar.",
+      "correcao": "Separar SQL e valores com parâmetros do driver.",
+      "validacao": "Detecção estática; confirmar com revisão e teste autorizado."
+    },
+    {
+      "id": "CFG001",
+      "arquivo": "lab/vulnerable/config.json",
+      "localizacao": "debug",
+      "evidencia": "Debug habilitado.",
+      "impacto": null,
+      "probabilidade": null,
+      "pontuacao": null,
+      "severidade": "não determinada",
+      "confianca": "média — padrão estático, sem análise de fluxo completa",
+      "cenario_de_risco": "Validar uso, exposição, dados e controles antes de classificar.",
+      "correcao": "Desabilitar debug fora do desenvolvimento.",
+      "validacao": "Detecção estática; confirmar com revisão e teste autorizado."
+    },
+    {
+      "id": "CFG002",
+      "arquivo": "lab/vulnerable/config.json",
+      "localizacao": "bind, tls",
+      "evidencia": "Escuta pública com TLS declarado desabilitado.",
+      "impacto": null,
+      "probabilidade": null,
+      "pontuacao": null,
+      "severidade": "não determinada",
+      "confianca": "média — padrão estático, sem análise de fluxo completa",
+      "cenario_de_risco": "Validar uso, exposição, dados e controles antes de classificar.",
+      "correcao": "Restringir a escuta e confirmar TLS no serviço ou proxy.",
+      "validacao": "Detecção estática; confirmar com revisão e teste autorizado."
+    },
+    {
+      "id": "INF001",
+      "arquivo": "lab/vulnerable/infra.json",
+      "localizacao": "ssh_sources",
+      "evidencia": "Origem SSH irrestrita em IPv4 ou IPv6.",
+      "impacto": null,
+      "probabilidade": null,
+      "pontuacao": null,
+      "severidade": "não determinada",
+      "confianca": "média — padrão estático, sem análise de fluxo completa",
+      "cenario_de_risco": "Validar uso, exposição, dados e controles antes de classificar.",
+      "correcao": "Restringir origem a rede administrativa autorizada.",
+      "validacao": "Detecção estática; confirmar com revisão e teste autorizado."
+    },
+    {
+      "id": "INF002",
+      "arquivo": "lab/vulnerable/infra.json",
+      "localizacao": "storage_encrypted",
+      "evidencia": "Criptografia de armazenamento declarada desabilitada.",
+      "impacto": null,
+      "probabilidade": null,
+      "pontuacao": null,
+      "severidade": "não determinada",
+      "confianca": "média — padrão estático, sem análise de fluxo completa",
+      "cenario_de_risco": "Validar uso, exposição, dados e controles antes de classificar.",
+      "correcao": "Habilitar criptografia e definir gestão de chaves.",
+      "validacao": "Detecção estática; confirmar com revisão e teste autorizado."
+    }
+  ],
+  "erros": []
+}

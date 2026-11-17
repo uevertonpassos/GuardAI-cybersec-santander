@@ -1,0 +1,196 @@
+GuardAI — evidência de execução real
+UTC: 2026-11-17T22:55:01.744935+00:00
+Python: 3.13.14
+Sistema: Windows
+
+$ python lab/vulnerable/app.py
+Busca normal: [(1, 'Ana Demo')]
+Entrada adversarial local: [(1, 'Ana Demo'), (2, 'Bruno Demo')]
+
+Saída: 0; esperada: 0
+
+$ python lab/hardened/app.py
+Busca normal: [(1, 'Ana Demo')]
+Entrada adversarial local: []
+
+Saída: 0; esperada: 0
+
+$ python -m unittest discover -s tests -v
+test_review_uses_committed_head_and_reports_unsupported_files (test_security.GitReviewTests.test_review_uses_committed_head_and_reports_unsupported_files) ... ok
+test_all_matrix_cells (test_security.RiskTests.test_all_matrix_cells) ... ok
+test_invalid_scores_rejected (test_security.RiskTests.test_invalid_scores_rejected) ... ok
+test_injection_reproduced_only_in_vulnerable (test_security.SQLRegressionTests.test_injection_reproduced_only_in_vulnerable) ... ok
+test_legitimate_apostrophe_is_data (test_security.SQLRegressionTests.test_legitimate_apostrophe_is_data) ... ok
+test_normal_input_still_works (test_security.SQLRegressionTests.test_normal_input_still_works) ... ok
+test_broken_json_fails_closed (test_security.StaticReviewTests.test_broken_json_fails_closed) ... ok
+test_cli_expected_exit_codes (test_security.StaticReviewTests.test_cli_expected_exit_codes) ... ok
+test_external_path_rejected (test_security.StaticReviewTests.test_external_path_rejected) ... ok
+test_ipv6_worldwide_access_detected (test_security.StaticReviewTests.test_ipv6_worldwide_access_detected) ... ok
+test_only_named_fixtures_are_excluded (test_security.StaticReviewTests.test_only_named_fixtures_are_excluded) ... ok
+test_public_binding_with_tls_not_flagged (test_security.StaticReviewTests.test_public_binding_with_tls_not_flagged) ... ok
+test_sql_word_in_comment_not_flagged (test_security.StaticReviewTests.test_sql_word_in_comment_not_flagged) ... ok
+test_three_insecure_scenarios_and_corrections (test_security.StaticReviewTests.test_three_insecure_scenarios_and_corrections) ... ok
+test_unknown_context_not_assigned_severity (test_security.StaticReviewTests.test_unknown_context_not_assigned_severity) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 1.003s
+
+OK
+
+Saída: 0; esperada: 0
+
+$ python scripts/security_review.py --paths lab/vulnerable/app.py lab/vulnerable/config.json lab/vulnerable/infra.json
+{
+  "formato": "guardai-estatico-v1",
+  "revisao": null,
+  "arquivos_analisados": [
+    "lab/vulnerable/app.py",
+    "lab/vulnerable/config.json",
+    "lab/vulnerable/infra.json"
+  ],
+  "arquivos_excluidos": [],
+  "arquivos_sem_regra": [],
+  "achados": [
+    {
+      "id": "SQL001",
+      "arquivo": "lab/vulnerable/app.py",
+      "localizacao": "linha 17",
+      "evidencia": "Construção dinâmica diretamente no argumento de execute; confirmar origem da entrada.",
+      "impacto": null,
+      "probabilidade": null,
+      "pontuacao": null,
+      "severidade": "não determinada",
+      "confianca": "média — padrão estático, sem análise de fluxo completa",
+      "cenario_de_risco": "Validar uso, exposição, dados e controles antes de classificar.",
+      "correcao": "Separar SQL e valores com parâmetros do driver.",
+      "validacao": "Detecção estática; confirmar com revisão e teste autorizado."
+    },
+    {
+      "id": "CFG001",
+      "arquivo": "lab/vulnerable/config.json",
+      "localizacao": "debug",
+      "evidencia": "Debug habilitado.",
+      "impacto": null,
+      "probabilidade": null,
+      "pontuacao": null,
+      "severidade": "não determinada",
+      "confianca": "média — padrão estático, sem análise de fluxo completa",
+      "cenario_de_risco": "Validar uso, exposição, dados e controles antes de classificar.",
+      "correcao": "Desabilitar debug fora do desenvolvimento.",
+      "validacao": "Detecção estática; confirmar com revisão e teste autorizado."
+    },
+    {
+      "id": "CFG002",
+      "arquivo": "lab/vulnerable/config.json",
+      "localizacao": "bind, tls",
+      "evidencia": "Escuta pública com TLS declarado desabilitado.",
+      "impacto": null,
+      "probabilidade": null,
+      "pontuacao": null,
+      "severidade": "não determinada",
+      "confianca": "média — padrão estático, sem análise de fluxo completa",
+      "cenario_de_risco": "Validar uso, exposição, dados e controles antes de classificar.",
+      "correcao": "Restringir a escuta e confirmar TLS no serviço ou proxy.",
+      "validacao": "Detecção estática; confirmar com revisão e teste autorizado."
+    },
+    {
+      "id": "INF001",
+      "arquivo": "lab/vulnerable/infra.json",
+      "localizacao": "ssh_sources",
+      "evidencia": "Origem SSH irrestrita em IPv4 ou IPv6.",
+      "impacto": null,
+      "probabilidade": null,
+      "pontuacao": null,
+      "severidade": "não determinada",
+      "confianca": "média — padrão estático, sem análise de fluxo completa",
+      "cenario_de_risco": "Validar uso, exposição, dados e controles antes de classificar.",
+      "correcao": "Restringir origem a rede administrativa autorizada.",
+      "validacao": "Detecção estática; confirmar com revisão e teste autorizado."
+    },
+    {
+      "id": "INF002",
+      "arquivo": "lab/vulnerable/infra.json",
+      "localizacao": "storage_encrypted",
+      "evidencia": "Criptografia de armazenamento declarada desabilitada.",
+      "impacto": null,
+      "probabilidade": null,
+      "pontuacao": null,
+      "severidade": "não determinada",
+      "confianca": "média — padrão estático, sem análise de fluxo completa",
+      "cenario_de_risco": "Validar uso, exposição, dados e controles antes de classificar.",
+      "correcao": "Habilitar criptografia e definir gestão de chaves.",
+      "validacao": "Detecção estática; confirmar com revisão e teste autorizado."
+    }
+  ],
+  "erros": []
+}
+
+Saída: 1; esperada: 1
+
+$ python scripts/security_review.py --paths lab/hardened/app.py lab/hardened/config.json lab/hardened/infra.json
+{
+  "formato": "guardai-estatico-v1",
+  "revisao": null,
+  "arquivos_analisados": [
+    "lab/hardened/app.py",
+    "lab/hardened/config.json",
+    "lab/hardened/infra.json"
+  ],
+  "arquivos_excluidos": [],
+  "arquivos_sem_regra": [],
+  "achados": [],
+  "erros": []
+}
+
+Saída: 0; esperada: 0
+
+$ python scripts/security_review.py --tracked
+{
+  "formato": "guardai-estatico-v1",
+  "revisao": null,
+  "arquivos_analisados": [
+    "lab/hardened/app.py",
+    "lab/hardened/config.json",
+    "lab/hardened/infra.json",
+    "scripts/capture_evidence.py",
+    "scripts/security_review.py",
+    "scripts/validate_project.py",
+    "tests/test_security.py"
+  ],
+  "arquivos_excluidos": [
+    "lab/vulnerable/app.py",
+    "lab/vulnerable/config.json",
+    "lab/vulnerable/infra.json"
+  ],
+  "arquivos_sem_regra": [
+    ".agents/skills/analise-vulnerabilidades/SKILL.md",
+    ".agents/skills/testes-seguranca/SKILL.md",
+    ".agents/skills/trilha-ciberseguranca/SKILL.md",
+    ".gitattributes",
+    ".github/pull_request_template.md",
+    ".github/workflows/security.yml",
+    ".gitignore",
+    "AGENTS.md",
+    "LICENSE",
+    "README.md",
+    "docs/avaliacao-manual.md",
+    "docs/devsecops.md",
+    "docs/harness.md",
+    "evidence/analise-laboratorio.md",
+    "evidence/contexto.md",
+    "examples/trilha-iniciante.md",
+    "knowledge/metodologia.md",
+    "knowledge/referencias.md",
+    "persona/guardai.md",
+    "templates/relatorio.md"
+  ],
+  "achados": [],
+  "erros": []
+}
+
+Saída: 0; esperada: 0
+
+$ python scripts/validate_project.py
+Integridade: OK; 3 skills, arquivos obrigatórios e links locais verificados.
+
+Saída: 0; esperada: 0

@@ -1,0 +1,5 @@
+{
+  "lab_only": true,
+  "ssh_sources": ["127.0.0.1/32", "::1/128"],
+  "storage_encrypted": true
+}

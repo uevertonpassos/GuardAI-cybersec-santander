@@ -1,0 +1,15 @@
+{
+  ".agents/skills/analise-vulnerabilidades/SKILL.md": "4d0bdf13def79e3aedc46bd36416afebaf1256065a0ba3b6e9957d670726a364",
+  ".agents/skills/testes-seguranca/SKILL.md": "af382cf2f13577c92d29b311f2876457afc22feb4acae21c145af22ba871d447",
+  ".agents/skills/trilha-ciberseguranca/SKILL.md": "b1efb1d03a8047038843b69ba06cadd58f5c4d5856400aaae3745669afe2f084",
+  "lab/hardened/app.py": "8726dac5dd8b63b47c94546f74ae39750310a43452551b6774289ccf7b1cde40",
+  "lab/hardened/config.json": "5581f4d3ce89570961b56bd1d65f4e1e095f57b071656ea54e4fc91a547ef8fc",
+  "lab/hardened/infra.json": "e4f438fa4b3fe0710c4ebb8f384d41f3105619c0d0a4261a6268813c913816ff",
+  "lab/vulnerable/app.py": "71fc8c6c29791682b3538c68e29fde04226daf50446aa1b4b4457ba24c8f431b",
+  "lab/vulnerable/config.json": "b252062155b32b76f2e05ac4f7eb119d5bbe2381fc59c462df01be93845d3dd2",
+  "lab/vulnerable/infra.json": "4db226db27af2cf70a922d73137f33cde26d812176eae4cb6a6de1e390397a7e",
+  "scripts/capture_evidence.py": "620309026553099f800dddbb977aac874800adac09fae4d5e15e96fbf3c89b9f",
+  "scripts/security_review.py": "a6e3dbe78f84a46496c6c65d557fd819a6e9f581d0adf2e63d9317904b8c3476",
+  "scripts/validate_project.py": "7954fc640866ac4cfad744e8362b8d57ef9327f536654abef1219bd0880622d7",
+  "tests/test_security.py": "4db9376bf0b046874a860b5ad5ffd4bf677a10afbe5e9d58ef5459442c9ba085"
+}
