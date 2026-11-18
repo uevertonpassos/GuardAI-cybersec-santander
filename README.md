@@ -90,19 +90,5 @@ O scanner retorna **0** sem achados nas regras cobertas, **1** com achados e **2
 
 Não foram fabricados screenshots nem transcrições de uma sessão independente. Os testes automatizados validam os auxiliares e o laboratório, não comprovam o comportamento futuro de um modelo. O [roteiro de avaliação](docs/avaliacao-manual.md) explica como testar as três skills e capturar prints reais da análise e das perguntas no seu harness. A comparação com um chat genérico é opcional.
 
-## Conferência da entrega
-
-- [x] Três skills com `name`, `description` e registro na tabela do AGENTS.md.
-- [x] Persona, conhecimento e relatório padronizado em português.
-- [x] Testes somente sobre código próprio, dados fictícios e Git local.
-- [x] Casos de código, configuração e infraestrutura, com versões corrigidas.
-- [x] Arquivos e links locais verificados; evidências de execução registradas.
-- [x] Instruções de harness e workflow de DevSecOps preparados.
-- [x] Nome proposto legível, minúsculo e sem acentos: **guardai-santander**.
-- [ ] Publicar na sua conta do GitHub com visibilidade pública — pendente por solicitação de não fazer push.
-- [ ] Conferir o workflow hospedado, exigir o check de segurança na proteção da branch e anexar prints do harness.
-- [ ] Enviar o link da raiz do repositório público, não de um arquivo. Compartilhar no LinkedIn é opcional.
-
-Antes da entrega ao curso, personalize a motivação com sua experiência e explique com suas palavras por que parametrizar a consulta resolve a causa. Use a [avaliação guiada](docs/avaliacao-manual.md) para revisar o processo etapa por etapa.
 
 Licença: [MIT](LICENSE).
